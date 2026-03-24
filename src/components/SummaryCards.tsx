@@ -29,24 +29,26 @@ function SummaryCards({ summary }: SummaryCardsProps) {
           
           Show a "-" prefix for negative balances.
       */}
-        {/* Income Card */}
-        <div className="summary-card income">
-          <div className="label">Total Income</div>
-          <div className="amount">{formatCurrency(summary.totalIncome)}</div>
+      {/* Income Card */}
+      <div className="summary-card income">
+        <div className="label">Total Income</div>
+        <div className="amount">{formatCurrency(summary.totalIncome)}</div>
+      </div>
+      {/* Expenses Card */}
+      <div className="summary-card expenses">
+        <div className="label">Total Expenses</div>
+        <div className="amount">{formatCurrency(summary.totalExpenses)}</div>
+      </div>
+      {/* Balance Card */}
+      <div
+        className={`summary-card balance ${summary.balance < 0 ? "negative" : ""}`}
+      >
+        <div className="label">Balance</div>
+        <div className="amount">
+          {summary.balance < 0 ? "-" : ""}
+          {formatCurrency(summary.balance)}
         </div>
-        {/* Expenses Card */}
-        <div className="summary-card expenses">
-          <div className="label">Total Expenses</div>
-          <div className="amount">{formatCurrency(summary.totalExpenses)}</div>
-        </div>
-        {/* Balance Card */}
-        <div className={`summary-card balance ${summary.balance < 0 ? "negative" : ""}`}>
-          <div className="label">Balance</div>
-          <div className="amount">
-            {summary.balance < 0 ? "-" : ""}
-            {formatCurrency(summary.balance)}
-          </div>
-        </div>
+      </div>
     </div>
   );
 }

@@ -39,22 +39,22 @@ function TransactionForm({ onAddTransaction }: TransactionFormProps) {
   //         - Validates: description must not be empty, amount must be a positive number
   //         - Calls onAddTransaction with the form values
   //         - Resets the form fields back to their initial values
-const handleSubmit = (e: React.FormEvent) => {
-  e.preventDefault();
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
 
-  const parsedAmount = parseFloat(amount);
+    const parsedAmount = parseFloat(amount);
 
-  //Validate inputs
-  if (!description.trim()) return;
-  if (isNaN(parsedAmount) || parsedAmount <= 0) return;
+    //Validate inputs
+    if (!description.trim()) return;
+    if (isNaN(parsedAmount) || parsedAmount <= 0) return;
 
-  onAddTransaction(description, parsedAmount, category, type);
+    onAddTransaction(description, parsedAmount, category, type);
 
-  //Reset form
-  setDescription("");
-  setAmount("");
-  setCategory("Food");
-};
+    //Reset form
+    setDescription("");
+    setAmount("");
+    setCategory("Food");
+  };
   return (
     <div className="form-card">
       <h2>➕ Add Transaction</h2>
@@ -120,29 +120,27 @@ const handleSubmit = (e: React.FormEvent) => {
         {/* TODO 12: Only render this div when type === "expense"
             Hint: {type === "expense" && ( ... )} */}
         {type === "expense" && (
-        <div className="form-group">
-          <label htmlFor="category">Category</label>
-          <select
-            id="category"
-            value={category}
-            onChange={(e) => setCategory(e.target.value as Category)}
-            // TODO 13: Set value to category state and add onChange to update it
-            //          Hint: onChange={(e) => setCategory(e.target.value as Category)}
-          >
-            {/* TODO 14: Map over expenseCategories to render <option> elements
+          <div className="form-group">
+            <label htmlFor="category">Category</label>
+            <select
+              id="category"
+              value={category}
+              onChange={(e) => setCategory(e.target.value as Category)}
+              // TODO 13: Set value to category state and add onChange to update it
+              //          Hint: onChange={(e) => setCategory(e.target.value as Category)}
+            >
+              {/* TODO 14: Map over expenseCategories to render <option> elements
                 Hint: {expenseCategories.map((cat) => (
                   <option key={cat} value={cat}>{cat}</option>
                 ))} */}
-            {expenseCategories.map((cat) => (
-              <option key={cat} value={cat}>
-                {cat}
-              </option>
-            ))}
-          </select>
-        </div>
+              {expenseCategories.map((cat) => (
+                <option key={cat} value={cat}>
+                  {cat}
+                </option>
+              ))}
+            </select>
+          </div>
         )}
-
-            
 
         <button type="submit" className="submit-btn">
           {/* TODO 15: Show "Add Income" or "Add Expense" based on the type state */}

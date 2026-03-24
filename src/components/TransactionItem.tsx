@@ -30,7 +30,7 @@ const categoryClasses: Record<Category, string> = {
 
 // TODO 2: Update the function signature to accept props using your interface.
 
-function TransactionItem({transaction, onDelete}: TransactionItemProps) {
+function TransactionItem({ transaction, onDelete }: TransactionItemProps) {
   const formatCurrency = (amount: number): string => {
     return "$" + amount.toFixed(2);
   };
@@ -38,17 +38,22 @@ function TransactionItem({transaction, onDelete}: TransactionItemProps) {
   return (
     <div className="transaction-item">
       <div className="transaction-info">
-        {/* TODO 3: Render the category icon
+        {
+          /* TODO 3: Render the category icon
             Use categoryEmojis[transaction.category] for the emoji
             Use categoryClasses[transaction.category] for the CSS class
-         */   
-            <div className={`category-icon ${categoryClasses[transaction.category]}`}>
-              {categoryEmojis[transaction.category]}
-            </div>
+         */
+          <div
+            className={`category-icon ${categoryClasses[transaction.category]}`}
+          >
+            {categoryEmojis[transaction.category]}
+          </div>
         }
         <div className="transaction-details">
           {/* TODO 4: Display the transaction description */}
-          <div className="transaction-description">{transaction.description}</div>
+          <div className="transaction-description">
+            {transaction.description}
+          </div>
           {/* TODO 5: Display the category and date */}
           <div className="transaction-meta">
             <span>{transaction.category}</span>
@@ -69,10 +74,11 @@ function TransactionItem({transaction, onDelete}: TransactionItemProps) {
         </span>
 
         {/* TODO 7: Add a delete button that calls onDelete with the transaction's id */}
-        <button 
-        className="delete-btn"
-        onClick={() => onDelete(transaction.id)} 
-        title="Delete transaction">
+        <button
+          className="delete-btn"
+          onClick={() => onDelete(transaction.id)}
+          title="Delete transaction"
+        >
           ×
         </button>
       </div>

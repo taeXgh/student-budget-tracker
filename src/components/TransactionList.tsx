@@ -23,18 +23,21 @@ const categoryFilters: ("All" | Category)[] = [
 
 // TODO 2: Update the function signature to accept props using your interface.
 
-function TransactionList({ transactions, onDeleteTransaction }: TransactionListProps) {
+function TransactionList({
+  transactions,
+  onDeleteTransaction,
+}: TransactionListProps) {
   // TODO 3: Create a state variable called "activeFilter" of type ("All" | Category),
   //         initialized to "All"
-const [activeFilter, setActiveFilter] = useState<"All" | Category>("All");
+  const [activeFilter, setActiveFilter] = useState<"All" | Category>("All");
   // TODO 4: Create a "filteredTransactions" variable that:
   //         - If activeFilter is "All", returns all transactions
   //         - Otherwise, returns only transactions matching the selected category
   //         Hint: Use a ternary with .filter()
-const filteredTransactions =
-  activeFilter === "All"
-    ? transactions
-    : transactions.filter((t) => t.category === activeFilter);
+  const filteredTransactions =
+    activeFilter === "All"
+      ? transactions
+      : transactions.filter((t) => t.category === activeFilter);
   return (
     <div className="transactions-card">
       <div className="transactions-header">
@@ -45,7 +48,8 @@ const filteredTransactions =
             </span>
         */}
         <span className="transaction-count">
-          {filteredTransactions.length}{""}
+          {filteredTransactions.length}
+          {""}
           {filteredTransactions.length === 1 ? "item" : "items"}
         </span>
       </div>
@@ -70,11 +74,10 @@ const filteredTransactions =
         */}
         {categoryFilters.map((filter) => (
           <button
-          key={filter}
-          className={`filter-btn ${activeFilter === filter ? "active" : ""}`}
-          onClick={() => setActiveFilter(filter)}
+            key={filter}
+            className={`filter-btn ${activeFilter === filter ? "active" : ""}`}
+            onClick={() => setActiveFilter(filter)}
           >
-
             {filter}
           </button>
         ))}
@@ -109,7 +112,6 @@ const filteredTransactions =
               onDelete={onDeleteTransaction}
             />
           ))
-
         )}
       </div>
     </div>
